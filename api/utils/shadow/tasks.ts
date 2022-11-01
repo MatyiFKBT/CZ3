@@ -12,6 +12,7 @@ export type ActivityData = {
   captures_on: (BaseActivityData["captures_on"][number] & ActivityItemExtras)[];
   deploys: (BaseActivityData["deploys"][number] & ActivityItemExtras)[];
 };
+
 export function addActivityItemExtras<T extends { pin: string }>(
   items: T[]
 ): (T & ActivityItemExtras)[] {
@@ -79,7 +80,7 @@ export const taskCalculations: { [task_id: number]: TaskCalculator } = {
 
   2: {
     task_id: 2,
-    calculate: count(({ captures }) => captures),
+    calculate: count(({ captures }) => captures.filter(i => !i.type?.hasTag(TypeTags.BouncerHost))),
   },
   3: {
     task_id: 3,
