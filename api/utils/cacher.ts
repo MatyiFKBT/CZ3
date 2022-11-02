@@ -22,6 +22,16 @@ export async function tryWithEachGenericClan<R>(fn: (clan_id: number) => Promise
   return await tryWithEach(GENERIC_CLANS, fn);
 }
 
+const GENERIC_USERS = [
+  455935, // CuppaZee
+  51311, // Thegenie18
+  125914, // sohcah
+];
+
+export async function tryWithEachGenericUser<R>(fn: (user_id: number) => Promise<R>) {
+  return await tryWithEach(GENERIC_USERS, fn);
+}
+
 export class Cacher<TData, TInput = string | undefined> {
   private cache: Map<string, [Promise<TData>, number]> = new Map();
 

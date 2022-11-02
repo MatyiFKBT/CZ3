@@ -9,6 +9,7 @@ import { FastifyReply } from "fastify";
 import { unableToReadPage } from "./unableToRead.js";
 import { invalidUsernamePage } from "./invalidUsername.js";
 import { randomBytes } from "crypto";
+import { tryWithEachGenericUser } from "../cacher";
 
 export interface DeviceDetails {
   app: "express" | "max" | "create" | "browse" | "nomad";
@@ -481,7 +482,7 @@ export async function authenticateWithUserID(
 }
 
 export function authenticateAnonymous(application?: APIApplication) {
-  return authenticateWithUserID(125914, application);
+  return tryWithEachGenericUser(user_id => authenticateWithUserID(user_id, application));
 }
 
 export interface AuthHeaders {
