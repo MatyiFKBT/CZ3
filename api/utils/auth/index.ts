@@ -9,7 +9,7 @@ import { FastifyReply } from "fastify";
 import { unableToReadPage } from "./unableToRead.js";
 import { invalidUsernamePage } from "./invalidUsername.js";
 import { randomBytes } from "crypto";
-import { tryWithEachGenericUser } from "../cacher";
+import { tryWithEachGenericUser } from "../cacher.js";
 
 export interface DeviceDetails {
   app: "express" | "max" | "create" | "browse" | "nomad";
