@@ -16,9 +16,9 @@ RUN yarn install
 
 FROM base as builder
 WORKDIR /cz3
-COPY --from=pruner /app/.git ./.git
-COPY --from=pruner /app/out/full/ .
-COPY --from=installer /app/ .
+COPY --from=pruner /cz3/.git ./.git
+COPY --from=pruner /cz3/out/full/ .
+COPY --from=installer /cz3/ .
 RUN turbo run web-build --scope=@cz3/app
 
 FROM nginx:stable-alpine AS runner
