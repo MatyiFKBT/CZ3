@@ -87,8 +87,8 @@ export default function App() {
     trpc.createClient({
       links: [
         httpBatchLink({
-          // url: "https://api.cuppazee.app/trpc",
-          url: "http://mba.sh.2b.io/trpc",
+          url: "https://api.cuppazee.app/trpc",
+          // url: "http://mba.sh.2b.io/trpc",
           headers() {
             return {
               // authorization: getAuthCookie(),
