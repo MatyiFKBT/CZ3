@@ -11,6 +11,7 @@ RUN turbo prune --scope=@cz3/app --docker
 FROM base AS builder
 COPY .gitignore .gitignore
 COPY --from=pruner /app/out/json/ .
+COPY --from=pruner /app/out/full/.yarn/releases/ ./.yarn/releases/
 COPY --from=pruner /app/out/yarn.lock ./yarn.lock
 RUN yarn install
 COPY --from=pruner /app/out/full/ .
