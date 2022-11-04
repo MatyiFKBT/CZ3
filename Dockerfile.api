@@ -47,7 +47,6 @@ COPY --from=builder /czapi/api/package.json ./api/package.json
 COPY --from=builder /czapi/api/node_modules ./api/node_modules
 COPY --from=builder /czapi/api/lib ./api/lib
 
-
 EXPOSE 80
 WORKDIR /czapi/api
 CMD [ "node", "lib/server.js", "--enable-source-maps" ]
