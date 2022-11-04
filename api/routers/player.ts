@@ -10,8 +10,18 @@ import { getPlayerActivity, getPlayerActivityOverview } from "../utils/data/acti
 import { munzeeFetch } from "../utils/munzee.js";
 import { alternamythRouter } from "./player/alternamyth.js";
 import { t } from "../trpc.js";
+import { meta } from "../utils/meta.js";
 
 export const playerRouter = t.router({
+  groups: t.procedure.query(async () => {
+    const rootGroup = meta.getGroup("root")!;
+    return meta.groups
+      .filter(group => group.parents.includes(rootGroup))
+      .map(group => ({
+        name: group.name,
+        icons: group.icons,
+      }));
+  }),
   activity: t.procedure
     .input(
       z.object({
