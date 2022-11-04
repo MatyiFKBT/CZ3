@@ -41,6 +41,7 @@ export enum TypeTags {
   TypeZodiacWestern = 0x07,
   TypeZodiacChinese = 0x08,
   TypeZodiacEgyptian = 0x09,
+  TypeZodiacCeltic = 0x81,
 
   TypeMystery = 0x0a,
   TypeMysteryElemental = 0x0b,
@@ -182,7 +183,7 @@ export enum TypeTags {
   FunctionSwap = 0x71,
   FunctionBlast = 0x72,
 }
-// Latest: Card2022AZWMailbox = 0x80,
+// Latest: TypeZodiacCeltic = 0x81,
 
 export interface TypeVirtualMeta {
   captureRadius?: number;

@@ -9,7 +9,7 @@ import { ActivityData, addActivityItemExtras } from "./tasks.js";
 import { p } from "../prisma.js";
 import { shadow_player, shadow_player_task, shadow_player_task_day } from "@cz3/prisma";
 import { rollbar } from "../../extra/rollbar.js";
-import { Cacher } from "../cacher.js";
+import { Cacher, tryWithEachGenericClan } from "../cacher.js";
 
 export interface ShadowPlayerReference {
   user_id: number;
@@ -32,14 +32,16 @@ function getCuppaZeeTaskId(task: { task_id: number; name: string }) {
 const tasksByGameId = new Cacher(async (game_id: number) => {
   try {
     const token = await authenticateAnonymous();
-    const response = await munzeeFetch({
-      endpoint: "clan/v2/requirements",
-      params: {
-        clan_id: 2041,
-        game_id,
-      },
-      token,
-    });
+    const response = await tryWithEachGenericClan(clan_id =>
+      munzeeFetch({
+        endpoint: "clan/v2/requirements",
+        params: {
+          clan_id,
+          game_id,
+        },
+        token,
+      })
+    );
     const data = await response.getMunzeeData();
     return [
       ...new Set(

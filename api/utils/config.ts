@@ -3,10 +3,11 @@ import { z } from "zod";
 import chalk from "chalk";
 
 const fileContent = JSON.parse(
-  fs.readFileSync(
-    process.env.NODE_ENV === "development" ? "./config.json" : "/cuppazee.json",
-    "utf8"
-  )
+  process.env.CZ_API_CONFIG ??
+    fs.readFileSync(
+      process.env.NODE_ENV === "development" ? "./config.json" : "/cuppazee.json",
+      "utf8"
+    )
 );
 
 export const apiApplicationSchema = z.object({
