@@ -7,6 +7,7 @@ RUN apk add git
 
 # BUILDER
 FROM base AS builder
+RUN yarn global add typescript
 
 #COPY .git ./.git
 COPY *.json ./
