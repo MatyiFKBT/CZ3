@@ -88,7 +88,7 @@ export default function App() {
       links: [
         httpBatchLink({
           // url: "https://api.cuppazee.app/trpc",
-          url: "http://mba.sh.2b.io/trpc",
+          url: "http://localhost/trpc",
           headers() {
             return {
               // authorization: getAuthCookie(),
